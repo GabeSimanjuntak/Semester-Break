@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quantum Chrono - Jam Digital Canggih</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="particles" id="particles-js"></div>
+    
+    <div class="theme-toggle" id="themeToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="5"></circle>
+            <line x1="12" y1="1" x2="12" y2="3"></line>
+            <line x1="12" y1="21" x2="12" y2="23"></line>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+            <line x1="1" y1="12" x2="3" y2="12"></line>
+            <line x1="21" y1="12" x2="23" y2="12"></line>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+        </svg>
+    </div>
+    
+    <div class="container">
+        <h1>Quantum Chrono</h1>
+        <div class="date" id="date"></div>
+        <div class="clock" id="clock"></div>
+        <div class="timezone" id="timezone"></div>
+        
+        <div class="analog-clock">
+            <div class="clock-mark twelve-mark"></div>
+            <div class="hand hour-hand" id="hourHand"></div>
+            <div class="hand minute-hand" id="minuteHand"></div>
+            <div class="hand second-hand" id="secondHand"></div>
+            <div class="center-circle"></div>
+            
+            <div class="clock-mark" style="transform: rotate(30deg);"></div>
+            <div class="clock-mark" style="transform: rotate(60deg);"></div>
+            <div class="clock-mark" style="transform: rotate(90deg);"></div>
+            <div class="clock-mark" style="transform: rotate(120deg);"></div>
+            <div class="clock-mark" style="transform: rotate(150deg);"></div>
+            <div class="clock-mark" style="transform: rotate(180deg);"></div>
+            <div class="clock-mark" style="transform: rotate(210deg);"></div>
+            <div class="clock-mark" style="transform: rotate(240deg);"></div>
+            <div class="clock-mark" style="transform: rotate(270deg);"></div>
+            <div class="clock-mark" style="transform: rotate(300deg);"></div>
+            <div class="clock-mark" style="transform: rotate(330deg);"></div>
+        </div>
+        
+        <div class="controls">
+            <button id="fullscreenBtn">Mode Layar Penuh</button>
+            <button id="timeFormatBtn">Format 12 Jam</button>
+            <button id="stopwatchBtn">Stopwatch</button>
+            <button id="timerBtn">Timer</button>
+            <button id="alarmBtn">Alarm</button>
+        </div>
+    </div>
+
+    <div class="alarm-modal" id="alarmModal">
+        <div class="alarm-content">
+            <h2>Set Alarm</h2>
+            <input type="time" id="alarmTime" required>
+            <div class="alarm-buttons">
+                <button id="setAlarmBtn">Set Alarm</button>
+                <button id="cancelAlarmBtn">Batal</button>
+            </div>
+            <div class="alarm-list" id="alarmList"></div>
+        </div>
+    </div>
+
+    <div class="alarm-modal" id="alarmActiveModal" style="display: none;">
+        <div class="alarm-content alarm-active" style="animation: pulse 1s infinite;">
+            <h2>Alarm!</h2>
+            <p id="alarmActiveText">Waktu alarm telah tiba!</p>
+            <button id="stopAlarmBtn">Matikan Alarm</button>
+        </div>
+    </div>
+
+    <div class="timer-modal" id="timerActiveModal" style="display: none;">
+        <div class="timer-content timer-active" style="animation: pulse 1s infinite;">
+            <h2>Timer Selesai!</h2>
+            <p id="timerActiveText">Waktu timer telah habis!</p>
+            <button id="stopTimerBtn">OK</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>

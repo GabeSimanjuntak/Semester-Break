@@ -1,0 +1,332 @@
+:root {
+    --primary-color: #2563eb;
+    --secondary-color: #1e40af;
+    --text-color: #f8fafc;
+    --background-color: #0f172a;
+    --accent-color: #f59e0b;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Times New Roman', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+    transition: background-color 0.3s ease;
+}
+
+.particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+}
+
+.container {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(15, 23, 42, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 800px;
+    width: 90%;
+    transition: all 0.3s ease;
+}
+
+h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    background: linear-gradient(45deg, var(--primary-color), var(--accent-color));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    font-weight: 700;
+}
+
+.clock {
+    font-size: 5rem;
+    font-weight: 700;
+    margin: 1rem 0;
+    letter-spacing: 2px;
+    text-shadow: 0 0 10px rgba(59, 130, 246, 0.5);
+}
+
+.date {
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--accent-color);
+}
+
+.timezone {
+    font-size: 1rem;
+    margin-bottom: 2rem;
+    opacity: 0.8;
+}
+
+.controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    flex-wrap: wrap;
+}
+
+button {
+    padding: 0.75rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: var(--secondary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+    cursor: pointer;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover {
+    transform: rotate(30deg);
+}
+
+.analog-clock {
+    width: 200px;
+    height: 200px;
+    border: 8px solid var(--primary-color);
+    border-radius: 50%;
+    position: relative;
+    margin: 2rem auto;
+    box-shadow: 0 0 20px rgba(37, 99, 235, 0.5),
+                inset 0 0 10px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+}
+
+.hand {
+    position: absolute;
+    bottom: 50%;
+    left: 50%;
+    transform-origin: 50% 100%;
+    border-radius: 10px;
+    transition: transform 0.5s cubic-bezier(0.4, 2.3, 0.3, 1);
+}
+
+.hour-hand {
+    width: 6px;
+    height: 60px;
+    background-color: var(--text-color);
+    margin-left: -3px;
+}
+
+.minute-hand {
+    width: 4px;
+    height: 80px;
+    background-color: var(--text-color);
+    margin-left: -2px;
+}
+
+.second-hand {
+    width: 2px;
+    height: 90px;
+    background-color: var(--accent-color);
+    margin-left: -1px;
+}
+
+.center-circle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 12px;
+    height: 12px;
+    background-color: var(--accent-color);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+}
+
+.clock-mark {
+    position: absolute;
+    width: 3px;
+    height: 12px;
+    background-color: var(--text-color);
+    left: 50%;
+    margin-left: -1.5px;
+    transform-origin: 50% 100px;
+}
+
+.twelve-mark {
+    position: absolute;
+    width: 3px;
+    height: 12px;
+    background-color: var(--text-color);
+    left: 50%;
+    top: 0;
+    margin-left: -1.5px;
+    transform: translateY(5px);
+}
+
+.alarm-modal, .timer-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+}
+
+.alarm-content, .timer-content {
+    background-color: var(--background-color);
+    padding: 2rem;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+}
+
+.alarm-content h2, .timer-content h2 {
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+}
+
+.alarm-content input {
+    width: 100%;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    border: 1px solid var(--primary-color);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+.alarm-buttons, .timer-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.alarm-active, .timer-active {
+    animation: pulse 1s infinite;
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+    70% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+}
+
+.alarm-list {
+    margin-top: 1rem;
+    max-height: 150px;
+    overflow-y: auto;
+}
+
+.alarm-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.alarm-item button {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .clock {
+        font-size: 3rem;
+    }
+    
+    h1 {
+        font-size: 2rem;
+    }
+    
+    .date {
+        font-size: 1.2rem;
+    }
+    
+    .analog-clock {
+        width: 150px;
+        height: 150px;
+    }
+    
+    .hour-hand {
+        height: 45px;
+    }
+    
+    .minute-hand {
+        height: 60px;
+    }
+    
+    .second-hand {
+        height: 70px;
+    }
+    
+    .clock-mark {
+        height: 10px;
+    }
+    
+    .twelve-mark {
+        height: 10px;
+        transform: translateY(3px);
+    }
+}
+
+body.light-mode {
+    --primary-color: #3b82f6;
+    --secondary-color: #2563eb;
+    --text-color: #1e293b;
+    --background-color: #f8fafc;
+    --accent-color: #f59e0b;
+}
+
+body.light-mode .container {
+    background: rgba(248, 250, 252, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+body.light-mode .alarm-content, 
+body.light-mode .timer-content {
+    background-color: var(--background-color);
+}
